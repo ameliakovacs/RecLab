@@ -192,9 +192,9 @@ class Topics(environment.DictEnvironment):
             # switches based on self._switch_probability.
             sensitized = np.where(self._sensitization_state[user_id] == 0)
             bored = np.where(self._sensitization_state[user_id] == 1)
-            self._sensitization_state[user_id, sensitized] = np.random.choice(
+            self._sensitization_state[user_id, sensitized] = self._dynamics_random.choice(
                 [0, 1], size=len(sensitized), p=[1 - self._switch_probability[0], self._switch_probability[0]])
-            self._sensitization_state[user_id, bored] = np.random.choice(
+            self._sensitization_state[user_id, bored] = self._dynamics_random.choice(
                 [0, 1], size=len(bored), p=[self._switch_probability[1], 1 - self._switch_probability[1]])
 
             decay = self._satiation_decay[int(
@@ -207,7 +207,7 @@ class Topics(environment.DictEnvironment):
         recommended = np.zeros(self._num_topics)
         recommended[topic] = 1
         self._satiations[user_id] = (decay * (self._satiations[user_id] + recommended) +
-                                     np.random.randn(self._num_topics) * self._satiation_noise)
+                                     self._dynamics_random.randn(self._num_topics) * self._satiation_noise)
 
         # Update underlying preference.
         preference = self._user_preferences[user_id, topic]
