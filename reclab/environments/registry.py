@@ -1,4 +1,5 @@
 """Contains make, a function to instantiate a standardized environment from a string."""
+from reclab.environments.topics_graph import TopicsGraph
 from .beta_rank import BetaRank
 from .latent_factors import LatentFactorBehavior, DatasetLatentFactor
 from .schmit import Schmit
@@ -68,6 +69,16 @@ NAMED_ENV_DICT = {
              satiation_decay=(0.1, 0.5),
              satiation_noise=0.1,
              switch_probability=(0.05, 0.2))
+    ),
+    'topics-graph-v1': (
+        TopicsGraph,
+        dict(num_topics=10,
+             num_users=100,
+             num_items=500,
+             rating_frequency=0.2,
+             num_init_ratings=0,
+             noise=0.5,
+             bias=0.5)
     ),
     'latent-static-v1': (
         LatentFactorBehavior,

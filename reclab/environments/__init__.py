@@ -8,3 +8,4 @@ from .latent_factors import LatentFactorBehavior, DatasetLatentFactor
 from .registry import make
 from .schmit import Schmit
 from .topics import Topics
+from .topics_graph import TopicsGraph
