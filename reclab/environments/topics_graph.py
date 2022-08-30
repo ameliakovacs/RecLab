@@ -15,6 +15,14 @@ import matplotlib.pyplot as plt
 
 class TopicsGraph(Topics):
     """
+    An environment where items belong to topics and users have different preferences for each topic.
+    The users are connected by an underlying graph. The connections determine how strongly users
+    are influenced by their neighbors when rating an item.
+
+    The bias parameter determines the degree to which a user assimilates with their neighbors.
+    Bias of 0 leads to consensus following DeGroot's repeated averaging.
+    Bias >= 1 may lead to polarization.
+
     user_graph : networkx graph
         The network of users. Nodes represent users and edges represent connections between users.
         The number of nodes must equal the number of users, and node labels must correspond
