@@ -4,7 +4,7 @@ import numpy as np
 from reclab.environments import Topics
 
 
-def test_env_seed(env1, env2):
+def _test_env_seed(env1, env2):
     env1.seed(0)
     env2.seed(0)
     env1.reset()
@@ -37,7 +37,7 @@ def test_envs():
                          rating_frequency=0.25,
                          num_init_ratings=0,
                          noise=0.0)
-    test_env_seed(static_env1, static_env2)
+    _test_env_seed(static_env1, static_env2)
 
     dynamic_env1 = Topics(num_topics=2,
                           num_users=4,
@@ -59,7 +59,7 @@ def test_envs():
                           memory_length=5,
                           boredom_threshold=2,
                           boredom_penalty=1)
-    test_env_seed(dynamic_env1, dynamic_env2)
+    _test_env_seed(dynamic_env1, dynamic_env2)
 
     shift_env1 = Topics(num_topics=2,
                         num_users=4,
@@ -83,7 +83,7 @@ def test_envs():
                         shift_frequency=1,
                         shift_weight=0.5,
                         user_bias_type='normal')
-    test_env_seed(shift_env1, shift_env2)
+    _test_env_seed(shift_env1, shift_env2)
 
     satiation_env1 = Topics(num_topics=2,
                             num_users=4,
@@ -103,7 +103,7 @@ def test_envs():
                             satiation_factor=3,
                             satiation_decay=0.5,
                             satiation_noise=0.1)
-    test_env_seed(satiation_env1, satiation_env2)
+    _test_env_seed(satiation_env1, satiation_env2)
 
     sensitization_env1 = Topics(num_topics=2,
                                 num_users=4,
@@ -125,4 +125,4 @@ def test_envs():
                                 satiation_decay=(0.1, 0.5),
                                 satiation_noise=0.1,
                                 switch_probability=(0.05, 0.2))
-    test_env_seed(sensitization_env1, sensitization_env2)
+    _test_env_seed(sensitization_env1, sensitization_env2)
